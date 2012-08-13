@@ -6,7 +6,7 @@ Fetching breaking news from websites
   # Fecthing breaking news from some website
   reader = Newly.new('http://g1.globo.com/bahia/')
   news = reader.highlights(
-                            css: '#ultimas-regiao div, #ultimas-regiao ul li', 
+                            selector: '#ultimas-regiao div, #ultimas-regiao ul li', 
                             url: 'a', 
                             date: '.data-hora', 
                             title: '.titulo', 
