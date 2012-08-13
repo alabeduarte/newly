@@ -16,23 +16,9 @@ class Newly
     @title = @selector.at_css("title").text
   end
   
-  def fetch(args)
-    array = Array.new
-    @selector.css(args[:css]).each do |item|
-      if (item)
-        if (args[:property].nil?)
-          array << item.css(args[:tag]).text
-        else
-          array << item.css(args[:tag]).map { |doc| doc[args[:property]] }.first
-        end
-      end
-    end
-    array
-  end
-  
   def highlights(args)
     news = Array.new
-    @selector.css(args[:css]).each do |item|
+    @selector.css(args[:selector]).each do |item|
       if (item)
         url = item.css(args[:url]).map { |doc| doc['href'] }.first if args[:url]
         

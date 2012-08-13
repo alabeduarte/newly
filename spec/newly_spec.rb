@@ -12,7 +12,7 @@ describe Newly do
   end
   
   it "should fetch highlights from http://g1.globo.com/bahia" do
-    highlights = g1_bahia.highlights( css: '#ultimas-regiao div, #ultimas-regiao ul li',
+    highlights = g1_bahia.highlights( selector: '#ultimas-regiao div, #ultimas-regiao ul li',
                                       url: 'a',
                                       date: '.data-hora',
                                       title: '.titulo',
@@ -24,7 +24,7 @@ describe Newly do
   
   context "fetching news from http://g1.globo.com" do
     it "should fetch highlights news" do
-      highlights = g1.highlights( css: '#glb-corpo .glb-area .chamada-principal',
+      highlights = g1.highlights( selector: '#glb-corpo .glb-area .chamada-principal',
                                         url: 'a',
                                         title: '.chapeu',
                                         subtitle: '.subtitulo',
@@ -42,7 +42,7 @@ describe Newly do
     end
     
     xit "should fetch keywords" do
-      highlights = g1.highlights( css: '#glb-corpo .glb-area .chamada-principal',
+      highlights = g1.highlights( selector: '#glb-corpo .glb-area .chamada-principal',
                                         url: 'a',
                                         title: '.chapeu',
                                         subtitle: '.subtitulo',
@@ -54,7 +54,7 @@ describe Newly do
   end
   
   it "should fetch highlights from http://www.metro1.com.br" do
-    highlights = metro1.highlights( css: '#lista-de-resultados .resultado',
+    highlights = metro1.highlights( selector: '#lista-de-resultados .resultado',
                                       url: 'a',
                                       date: '.resultado-data',
                                       title: '.resultado-titulo',
