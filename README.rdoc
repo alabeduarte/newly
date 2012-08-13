@@ -1,6 +1,16 @@
 = newly
 
-Description goes here.
+Fetching breaking news from websites
+
+== SYNOPSIS:
+reader=WebReader.new('http://g1.globo.com/bahia/')
+news = reader.highlights( css: '#ultimas-regiao div, #ultimas-regiao ul li',
+                       url: 'a',
+                       date: '.data-hora',
+                       title: '.titulo',
+                       subtitle: '.subtitulo',
+                       image: 'img'
+                      )
 
 == Contributing to newly
  
