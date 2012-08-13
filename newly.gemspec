@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/newly.rb",
     "lib/news.rb",
+    "newly.gemspec",
     "spec/.DS_Store",
     "spec/html/ecbahia.html",
     "spec/html/g1.html",
