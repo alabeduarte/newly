@@ -13,7 +13,7 @@ Fetching breaking news from websites
                             subtitle: '.subtitulo', 
                             image: 'img')
 
-  # Attributes
+  # Presentation News
   news.each |n| do
     puts n.url # news href url
     puts n.title # news title
