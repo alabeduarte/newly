@@ -5,9 +5,9 @@ Fetching breaking news from websites
 == SYNOPSIS:
 #Fecthing breaking news from some website
 
-reader = Newly.new("http://g1.globo.com/bahia/")
+	reader = Newly.new("http://g1.globo.com/bahia/")
 
-news = reader.highlights(css: '#ultimas-regiao div, #ultimas-regiao ul li', url: 'a', date: '.data-hora', title: '.titulo', subtitle: '.subtitulo', image: 'img')
+	news = reader.highlights(css: '#ultimas-regiao div, #ultimas-regiao ul li', url: 'a', date: '.data-hora', title: '.titulo', subtitle: '.subtitulo', image: 'img')
 
 == Contributing to newly
  
