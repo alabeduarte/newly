@@ -26,7 +26,7 @@ class Newly
           url = "#{host}/#{url}".gsub('../', '') if url
           image = "#{host}/#{image}".gsub('../', '') if image && image.include?('../')
         end
-        news << News.new(url: href, keywords: keywords, date: date, title: title, subtitle: subtitle, image: img)
+        news << News.new(url: href, date: date, title: title, subtitle: subtitle, image: img)
       end
     end
     news
