@@ -1,17 +1,18 @@
 = newly
 
-Fetching breaking news from websites
+==Fetching breaking news from websites
+* Based on Nokogiri https://github.com/sparklemotion/nokogiri
 
 == SYNOPSIS:
   # Fecthing breaking news from some website
   reader = Newly.new('http://g1.globo.com/bahia/')
   news = reader.highlights(
                             selector: '#ultimas-regiao div, #ultimas-regiao ul li', 
-                            url: 'a', 
+                            href: 'a', 
                             date: '.data-hora', 
                             title: '.titulo', 
                             subtitle: '.subtitulo', 
-                            image: 'img')
+                            img: 'img')
 
   # Presentation News
   news.each |n| do
