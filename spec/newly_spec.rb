@@ -2,10 +2,11 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 # require 'spec_helper'
 
 describe Newly do
-  let(:ec_bahia) { ec_bahia = Newly.new('http://www.ecbahia.com', 'spec/html/ecbahia.html') }
-  let(:g1) { g1_bahia = Newly.new('http://g1.globo.com', 'spec/html/g1.html') }
-  let(:g1_bahia) { g1_bahia = Newly.new('http://g1.globo.com/bahia/', 'spec/html/g1_bahia.html') }
-  let(:metro1) { g1_bahia = Newly.new('http://www.metro1.com.br/portal/?varSession=noticia&varEditoria=cidade', 'spec/html/metro1_cidade.html') }
+  let(:selector) { Nokogiri::HTML }
+  let(:ec_bahia) { Newly.new('http://www.ecbahia.com', parse('spec/html/ecbahia.html')) }
+  let(:g1) { Newly.new('http://g1.globo.com', parse('spec/html/g1.html')) }
+  let(:g1_bahia) { Newly.new('http://g1.globo.com/bahia/', parse('spec/html/g1_bahia.html')) }
+  let(:metro1) { Newly.new('http://www.metro1.com.br/portal/?varSession=noticia&varEditoria=cidade', parse('spec/html/metro1_cidade.html')) }
   
   it "should fetch ecbahia title" do
     ec_bahia.title.should == "ecbahia.com - \u00e9 goleada tricolor na internet!  (ecbahia, ecbahia.com, ecbahia.com.br, Esporte Clube Bahia)"
@@ -13,11 +14,11 @@ describe Newly do
   
   it "should fetch highlights from http://g1.globo.com/bahia" do
     highlights = g1_bahia.highlights( selector: '#ultimas-regiao div, #ultimas-regiao ul li',
-                                      url: 'a',
+                                      href: 'a',
                                       date: '.data-hora',
                                       title: '.titulo',
                                       subtitle: '.subtitulo',
-                                      image: 'img'
+                                      img: 'img'
                                       )
     highlights.should_not be_empty
   end
@@ -25,10 +26,10 @@ describe Newly do
   context "fetching news from http://g1.globo.com" do
     it "should fetch highlights news" do
       highlights = g1.highlights( selector: '#glb-corpo .glb-area .chamada-principal',
-                                        url: 'a',
+                                        href: 'a',
                                         title: '.chapeu',
                                         subtitle: '.subtitulo',
-                                        image: '.foto a img'
+                                        img: '.foto a img'
                                         )
       highlights.should_not be_empty
       highlights[0].url.should == 'http://g1.globo.com/mundo/noticia/2012/08/ira-encerra-resgate-apos-terremotos-e-revisa-mortos-para-227-diz-tv-estatal.html'
@@ -43,10 +44,10 @@ describe Newly do
     
     xit "should fetch keywords" do
       highlights = g1.highlights( selector: '#glb-corpo .glb-area .chamada-principal',
-                                        url: 'a',
+                                        href: 'a',
                                         title: '.chapeu',
                                         subtitle: '.subtitulo',
-                                        image: '.foto a img'
+                                        img: '.foto a img'
                                         )
       highlights[0].url.should == 'http://g1.globo.com/mundo/noticia/2012/08/ira-encerra-resgate-apos-terremotos-e-revisa-mortos-para-227-diz-tv-estatal.html'
       highlights[0].keywords.should == 'noticias, noticia, Mundo'
@@ -55,13 +56,18 @@ describe Newly do
   
   it "should fetch highlights from http://www.metro1.com.br" do
     highlights = metro1.highlights( selector: '#lista-de-resultados .resultado',
-                                      url: 'a',
+                                      href: 'a',
                                       date: '.resultado-data',
                                       title: '.resultado-titulo',
                                       subtitle: '.resultado-texto',
-                                      image: 'a img.img-resultado',
+                                      img: 'a img.img-resultado',
                                       host: 'http://www.metro1.com.br'
                                       )
     highlights.should_not be_empty
+  end
+  
+private
+  def parse(path)
+    selector.parse(File.read(path))
   end
 end

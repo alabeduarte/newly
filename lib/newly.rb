@@ -6,13 +6,9 @@ class Newly
   
   attr_reader :title, :selector, :url
   
-  def initialize(url, html_file=nil)
+  def initialize(url, selector=Nokogiri::HTML(open(url)))
     @url = url
-    if (html_file)
-      @selector = Nokogiri::HTML.parse(File.read(html_file))
-    else
-      @selector = Nokogiri::HTML(open(url))
-    end
+    @selector = selector
     @title = @selector.at_css("title").text
   end
   
@@ -20,7 +16,7 @@ class Newly
     news = Array.new
     @selector.css(args[:selector]).each do |item|
       if (item)
-        url = item.css(args[:url]).map { |doc| doc['href'] }.first if args[:url]
+        href = item.css(args[:href]).map { |doc| doc['href'] }.first if args[:href]
         
         # doc = Nokogiri::HTML(open(url))
         # keywords = doc.xpath("//meta[@name='Keywords']/@content") if doc
@@ -29,16 +25,15 @@ class Newly
         date = item.css(args[:date]).text if args[:date]
         title = item.css(args[:title]).text if args[:title]
         subtitle = item.css(args[:subtitle]).text if args[:subtitle]
-        image = item.css(args[:image]).map { |doc| doc['src'] }.first if args[:image]
+        img = item.css(args[:img]).map { |doc| doc['src'] }.first if args[:img]
         if (args[:host])
           host = args[:host]
           url = "#{host}/#{url}".gsub('../', '') if url
           image = "#{host}/#{image}".gsub('../', '') if image && image.include?('../')
         end
-        news << News.new(url: url, keywords: keywords, date: date, title: title, subtitle: subtitle, image: image)
+        news << News.new(url: href, keywords: keywords, date: date, title: title, subtitle: subtitle, image: img)
       end
     end
     news
   end
-  
 end
