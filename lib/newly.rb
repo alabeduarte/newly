@@ -17,11 +17,6 @@ class Newly
     @selector.css(args[:selector]).each do |item|
       if (item)
         href = item.css(args[:href]).map { |doc| doc['href'] }.first if args[:href]
-        
-        # doc = Nokogiri::HTML(open(url))
-        # keywords = doc.xpath("//meta[@name='Keywords']/@content") if doc
-        keywords = nil
-        
         date = item.css(args[:date]).text if args[:date]
         title = item.css(args[:title]).text if args[:title]
         subtitle = item.css(args[:subtitle]).text if args[:subtitle]
