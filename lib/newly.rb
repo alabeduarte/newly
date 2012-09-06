@@ -3,32 +3,44 @@ require 'open-uri'
 require 'news'
 
 class Newly
-  
+
   attr_reader :title, :selector, :url
-  
+
   def initialize(url, selector=Nokogiri::HTML(open(url)))
     @url = url
     @selector = selector
     @title = @selector.at_css("title").text
   end
-  
+
   def highlights(args)
     news = Array.new
     @selector.css(args[:selector]).each do |item|
       if (item)
-        href = item.css(args[:href]).map { |doc| doc['href'] }.first if args[:href]
-        date = item.css(args[:date]).text if args[:date]
-        title = item.css(args[:title]).text if args[:title]
-        subtitle = item.css(args[:subtitle]).text if args[:subtitle]
-        img = item.css(args[:img]).map { |doc| doc['src'] }.first if args[:img]
-        if (args[:host])
-          host = args[:host]
-          url = "#{host}/#{url}".gsub('../', '') if url
+        href = find_link(item, args[:href], 'href')
+        date = find(item, args[:date])
+        title = find(item, args[:title])
+        subtitle = find(item, args[:subtitle])
+        img = find_link(item, args[:img], 'src')
+        host = args[:host]
+        if host
           image = "#{host}/#{image}".gsub('../', '') if image && image.include?('../')
         end
         news << News.new(url: href, date: date, title: title, subtitle: subtitle, image: img)
       end
     end
     news
+  end
+
+private
+  def find_link(item, element, src)
+    item.css(element).map { |doc| doc[src] }.first if valid?(element)
+  end
+
+  def find(item, element)
+    item.css(element).text if valid?(element)
+  end
+
+  def valid?(element)
+    element && !element.empty?
   end
 end
