@@ -55,16 +55,17 @@ describe Newly do
     end
   end
 
-  it "should fetch highlights from http://www.metro1.com.br" do
+  it "should fetch highlights with relative urls from http://www.metro1.com.br" do
     highlights = metro1.highlights( selector: '#lista-de-resultados .resultado',
                                       href: 'a',
                                       date: '.resultado-data',
                                       title: '.resultado-titulo',
                                       subtitle: '.resultado-texto',
                                       img: 'a img.img-resultado',
-                                      host: 'http://www.metro1.com.br'
+                                      host: 'http://www.metro1.com.br/portal'
                                       )
     highlights.should_not be_empty
+    highlights[0].url.should == 'http://www.metro1.com.br/portal/?varSession=noticia&varEditoriaId=5&varId=16098'
   end
 
   context "fetching news from http://noticias.terra.com.br" do

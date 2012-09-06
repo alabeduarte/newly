@@ -23,6 +23,7 @@ class Newly
         img = find_link(item, args[:img], 'src')
         host = args[:host]
         if host
+          href = "#{host}/#{href}".gsub('../', '') if href && !href.include?('http')
           image = "#{host}/#{image}".gsub('../', '') if image && image.include?('../')
         end
         news << News.new(url: href, date: date, title: title, subtitle: subtitle, image: img)
