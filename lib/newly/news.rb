@@ -1,7 +1,6 @@
 module Newly
   class News
-
-    attr_reader :url, :url_pattern, :title, :subtitle, :image, :featured_level, :feed_url
+    attr_reader :url, :url_pattern, :title, :subtitle, :image, :feed_url
 
     def initialize(args)
       page_crawler = args[:page_crawler]
@@ -12,7 +11,6 @@ module Newly
       @subtitle = page_crawler.titleize feed.subtitle
       @image = page_crawler.image feed.image_source
       @feed_url = feed.url
-      @featured_level = feed.featured_level
     end
   end
 end

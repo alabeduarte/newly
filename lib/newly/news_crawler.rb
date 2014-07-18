@@ -3,8 +3,7 @@ module Newly
 
     attr_reader :title, :selector, :url
 
-    def initialize(feed, selector)
-      @feed = feed
+    def initialize(selector)
       @selector = selector
     end
 
@@ -23,8 +22,10 @@ module Newly
   private
     def build_news_by(item)
       if (item)
-        page_crawler = PageCrawler.new(@feed.host, item)
-        Newly::News.new(page_crawler: page_crawler, feed: @feed)
+        feed = selector.feed
+        page_crawler = PageCrawler.new(feed.host, item)
+
+        Newly::News.new(page_crawler: page_crawler, feed: feed)
       end
     end
 

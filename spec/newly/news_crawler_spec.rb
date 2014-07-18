@@ -97,7 +97,7 @@ describe Newly::NewsCrawler do
 private
   def build_reader_with(feed, html)
     selector = Newly::Selector.new(feed, parse(html))
-    Newly::NewsCrawler.new(feed, selector)
+    Newly::NewsCrawler.new(selector)
   end
   def parse(path)
     Nokogiri::HTML.parse(File.read(path))
