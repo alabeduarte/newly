@@ -1,6 +1,5 @@
 module Newly
   class NewsCrawler
-
     attr_reader :title, :selector, :url
 
     def initialize(selector)

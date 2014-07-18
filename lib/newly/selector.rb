@@ -11,8 +11,8 @@ module Newly
 
     def all
       @feed.limit ?
-        @selector.css(@feed.selector).first(@feed.limit) :
-        @selector.css(@feed.selector)
+        @selector.css(@feed.container).first(@feed.limit) :
+        @selector.css(@feed.container)
     end
 
     def title

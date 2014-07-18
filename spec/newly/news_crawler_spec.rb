@@ -5,7 +5,7 @@ describe Newly::NewsCrawler do
   describe "fetching news" do
 
     it "should fetch news with limit" do
-      first_feed_with_limit = Newly::Feed.new(selector: ".chamada-principal", limit: 2)
+      first_feed_with_limit = Newly::Feed.new(container: ".chamada-principal", limit: 2)
       first_reader = build_reader_with(first_feed_with_limit, 'spec/html/page_spec.html')
 
       expect(first_reader).to have(2).fetch
@@ -13,7 +13,7 @@ describe Newly::NewsCrawler do
 
     it "should fetch news without limit" do
       first_feed_without_limit = Newly::Feed.new(
-        selector: ".chamada-principal",
+        container: ".chamada-principal",
         url_pattern: "a",
         title: ".conteudo p",
         image_source: "img")
@@ -26,7 +26,7 @@ describe Newly::NewsCrawler do
       context "first feed" do
         let(:first_feed) do
           Newly::Feed.new(
-            selector: ".chamada-principal",
+            container: ".chamada-principal",
             url_pattern: "a",
             title: ".conteudo p",
             image_source: "img")
@@ -47,7 +47,7 @@ describe Newly::NewsCrawler do
         let(:second_feed) do
           Newly::Feed.new(
             url: "http://noticias.uol.com.br/noticias",
-            selector: "div.geral section article.news",
+            container: "div.geral section article.news",
             url_pattern: "h1 a",
             title: "h1 a span",
             subtitle: "p")
@@ -66,7 +66,7 @@ describe Newly::NewsCrawler do
 
       context "when reader is invalid" do
         it "should not return news from invalid reader" do
-          invalid_feed = Newly::Feed.new(selector: "invalid")
+          invalid_feed = Newly::Feed.new(container: "invalid")
           invalid_reader = build_reader_with(invalid_feed, 'spec/html/page_spec.html')
 
           expect(invalid_reader).to have(0).fetch
@@ -76,7 +76,7 @@ describe Newly::NewsCrawler do
           let(:invalid_feed) do
             Newly::Feed.new(
               url: "http://noticias.uol.com.br/noticias",
-              selector: "div.geral section article.news",
+              container: "div.geral section article.news",
               url_pattern: "x",
               title: "x",
               subtitle: "x")
