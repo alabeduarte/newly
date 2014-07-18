@@ -1,6 +1,6 @@
 module Newly
   class Feed
-    attr_reader :url, :container, :url_pattern, :title, :subtitle, :image_source, :favicon, :host, :limit
+    attr_reader :url, :container, :url_pattern, :title, :subtitle, :image_source, :favicon, :host, :limit, :selector
 
     def initialize(args)
       @url = args[:url]
@@ -12,6 +12,7 @@ module Newly
       @favicon = args[:favicon]
       @host = args[:host]
       @limit = args[:limit]
+      @selector = args[:selector]
     end
   end
 end

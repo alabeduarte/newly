@@ -14,11 +14,7 @@ feed = Newly::Feed.new(
                         subtitle: '.subtitulo',
                         image_source: 'img')
 
-selector = Newly::Selector.new(feed)
-news_crawler = Newly::NewsCrawler.new(selector)
-
-news = news_crawler.fetch
-
+news = Newly::NewsCrawler.new(feed).fetch
 news.each |n| do
   puts n.url # news href url
   puts n.title # news title

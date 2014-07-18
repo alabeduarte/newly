@@ -2,22 +2,26 @@ require 'spec_helper'
 
 describe Newly::NewsCrawler do
 
+  let(:html) { 'spec/html/page_spec.html' }
+
   describe "fetching news" do
 
     it "should fetch news with limit" do
-      first_feed_with_limit = Newly::Feed.new(container: ".chamada-principal", limit: 2)
-      first_reader = build_reader_with(first_feed_with_limit, 'spec/html/page_spec.html')
+      first_feed_with_limit = Newly::Feed.new(url: 'http://bla.x', container: ".chamada-principal", limit: 2, selector: parse(html))
+      first_reader = build_reader_with first_feed_with_limit
 
       expect(first_reader).to have(2).fetch
     end
 
     it "should fetch news without limit" do
       first_feed_without_limit = Newly::Feed.new(
+        url: 'http://bla.x',
         container: ".chamada-principal",
         url_pattern: "a",
         title: ".conteudo p",
-        image_source: "img")
-      first_reader = build_reader_with(first_feed_without_limit, 'spec/html/page_spec.html')
+        image_source: "img",
+        selector: parse(html))
+      first_reader = build_reader_with first_feed_without_limit
 
       expect(first_reader).to have(4).fetch
     end
@@ -26,12 +30,14 @@ describe Newly::NewsCrawler do
       context "first feed" do
         let(:first_feed) do
           Newly::Feed.new(
+            url: 'http://bla.x',
             container: ".chamada-principal",
             url_pattern: "a",
             title: ".conteudo p",
-            image_source: "img")
+            image_source: "img",
+            selector: parse(html))
         end
-        let(:first_reader) { build_reader_with(first_feed, 'spec/html/page_spec.html') }
+        let(:first_reader) { build_reader_with first_feed }
 
         it "should fetch high quality images" do
           a_news = first_reader.fetch.first
@@ -50,9 +56,10 @@ describe Newly::NewsCrawler do
             container: "div.geral section article.news",
             url_pattern: "h1 a",
             title: "h1 a span",
-            subtitle: "p")
+            subtitle: "p",
+            selector: parse(html))
         end
-        let(:second_reader) { build_reader_with(second_feed, 'spec/html/page_spec.html') }
+        let(:second_reader) { build_reader_with second_feed }
 
         context "fetching news valid fields" do
           let(:a_news) { second_reader.fetch.first }
@@ -66,8 +73,8 @@ describe Newly::NewsCrawler do
 
       context "when reader is invalid" do
         it "should not return news from invalid reader" do
-          invalid_feed = Newly::Feed.new(container: "invalid")
-          invalid_reader = build_reader_with(invalid_feed, 'spec/html/page_spec.html')
+          invalid_feed = Newly::Feed.new(container: "invalid", selector: parse(html))
+          invalid_reader = build_reader_with invalid_feed
 
           expect(invalid_reader).to have(0).fetch
         end
@@ -79,9 +86,10 @@ describe Newly::NewsCrawler do
               container: "div.geral section article.news",
               url_pattern: "x",
               title: "x",
-              subtitle: "x")
+              subtitle: "x",
+              selector: parse(html))
           end
-          let(:invalid_reader) { build_reader_with(invalid_feed, 'spec/html/page_spec.html') }
+          let(:invalid_reader) { build_reader_with invalid_feed }
           let(:a_news) { invalid_reader.fetch.first }
 
           it { expect(a_news.url).to be_nil }
@@ -95,11 +103,10 @@ describe Newly::NewsCrawler do
   end
 
 private
-  def build_reader_with(feed, html)
-    selector = Newly::Selector.new(feed, parse(html))
-    Newly::NewsCrawler.new(selector)
+  def build_reader_with(feed)
+    Newly::NewsCrawler.new(feed)
   end
   def parse(path)
-    Nokogiri::HTML.parse(File.read(path))
+    Newly::Selector.new Nokogiri::HTML.parse(File.read path)
   end
 end
