@@ -9,7 +9,9 @@ module Newly
     end
 
     def all
-      @selector.css(@feed.selector).first(@feed.limit)
+      @feed.limit ?
+        @selector.css(@feed.selector).first(@feed.limit) :
+        @selector.css(@feed.selector)
     end
 
     def title

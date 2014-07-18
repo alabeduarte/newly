@@ -11,7 +11,10 @@ module Newly
     def fetch
       news_fetched = Set.new
       @selector.all.each do |item|
-        news_fetched << build_news_by(item)
+        news = build_news_by(item)
+        if news
+          news_fetched << news
+        end
       end
 
       news_fetched.to_a
