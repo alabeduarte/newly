@@ -2,8 +2,12 @@ module Newly
   class NewsCrawler
     attr_reader :title, :selector, :url
 
-    def initialize(feed)
-      @feed, @selector = feed, feed.selector
+    def initialize(selector, url, feed)
+      raise "The url is required" unless url
+
+      @url = url
+      @selector = selector || Newly::Selector.new(Nokogiri::HTML(open @url))
+      @feed = feed
     end
 
     def fetch
@@ -25,7 +29,7 @@ module Newly
       if (item)
         page_crawler = PageCrawler.new(@feed.host, item)
 
-        Newly::News.new(page_crawler: page_crawler, feed: @feed)
+        Newly::News.new(page_crawler: page_crawler, feed: @feed, feed_url: @url)
       end
     end
 

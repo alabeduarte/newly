@@ -6,11 +6,11 @@ module Newly
       page_crawler = args[:page_crawler]
       feed = args[:feed]
 
+      @feed_url = args[:feed_url]
       @url = page_crawler.link feed.url_pattern
       @title = page_crawler.titleize feed.title
       @subtitle = page_crawler.titleize feed.subtitle
       @image = page_crawler.image feed.image_source
-      @feed_url = feed.url
     end
   end
 end

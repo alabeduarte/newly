@@ -1,9 +1,6 @@
-require 'nokogiri'
-require 'open-uri'
-
 module Newly
   class Selector
-    def initialize(selector=Nokogiri::HTML(open feed.url))
+    def initialize(selector)
       @selector = selector
     end
 
