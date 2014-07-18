@@ -11,6 +11,7 @@ describe Newly::NewsCrawler do
       limit: 3),
 
     second_feed: Newly::Feed.new(
+      url: "http://noticias.uol.com.br/noticias",
       selector: "div.geral section article.news",
       url_pattern: "h1 a",
       title: "h1 a span",
@@ -27,25 +28,25 @@ describe Newly::NewsCrawler do
   describe "fetching news" do
 
     it "should fetch news with limit" do
-      first_reader.should have(3).fetch
+      expect(first_reader).to have(3).fetch
     end
 
     context "when news has content" do
 
       it "should fetch high quality images" do
         a_news = first_reader.fetch.first
-        a_news.image.should == "http://s.glbimg.com/en/ho/f/original/2012/09/29/exobeso.jpg"
+        expect(a_news.image).to eq "http://s.glbimg.com/en/ho/f/original/2012/09/29/exobeso.jpg"
       end
       it "should capitalize the title field" do
         a_news = first_reader.fetch.first
-        a_news.title.should == "Fenomeno assustador"
+        expect(a_news.title).to eq "Fenomeno assustador"
       end
 
       let(:a_news) { second_reader.fetch.first }
-      it { a_news.url.should == 'http://esporte.uol.com.br/ultimas-noticias/reuters/2012/09/08/jackie-stewart-aconselha-hamilton-a-continuar-na-mclaren.htm' }
-      it { a_news.title.should == 'Jackie Stewart aconselha Hamilton a continuar na McLaren' }
-      it { a_news.subtitle.should == 'MONZA, 8 Set (Reuters) - Tricampeao de Formula 1, Jackie Stewart aconselhou Lewis Hamilton neste sabado a...' }
-      it { a_news.feed.url == "http://noticias.uol.com.br/noticias" }
+      it { expect(a_news.url).to eq 'http://esporte.uol.com.br/ultimas-noticias/reuters/2012/09/08/jackie-stewart-aconselha-hamilton-a-continuar-na-mclaren.htm' }
+      it { expect(a_news.title).to eq 'Jackie Stewart aconselha Hamilton a continuar na McLaren' }
+      it { expect(a_news.subtitle).to eq 'MONZA, 8 Set (Reuters) - Tricampeao de Formula 1, Jackie Stewart aconselhou Lewis Hamilton neste sabado a...' }
+      it { expect(a_news.feed.url).to eq "http://noticias.uol.com.br/noticias" }
 
     end
 

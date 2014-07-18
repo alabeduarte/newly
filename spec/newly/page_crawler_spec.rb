@@ -6,43 +6,43 @@ describe Newly::PageCrawler do
 
   describe "#text" do
     context "when is valid input" do
-      it { subject.text(".a").should == "I'm a Example Page" }
-      it { subject.text(".b").should == "I'm a another Example Page" }
+      it { expect(subject.text(".a")).to eq "I'm a Example Page" }
+      it { expect(subject.text(".b")).to eq "I'm a another Example Page" }
     end
     context "when is invalid input" do
-      it { subject.text(".c").should be_nil }
-      it { subject.text("").should be_nil }
-      it { subject.text(nil).should be_nil }
+      it { expect(subject.text(".c")).to be_nil }
+      it { expect(subject.text("")).to be_nil }
+      it { expect(subject.text(nil)).to be_nil }
     end
   end
 
   describe "#link" do
     context "when is valid input" do
-      it { subject.link(".a").should == "#{host}" }
-      it { subject.link(".b").should == "#{host}/sports" }
-      it { subject.link(".c").should == "#{host}/economy" }
-      it { subject.link(".d").should == "#{host}//economy" }
-      it { subject.link(".e").should == "#{host}/economy" }
+      it { expect(subject.link(".a")).to eq "#{host}" }
+      it { expect(subject.link(".b")).to eq "#{host}/sports" }
+      it { expect(subject.link(".c")).to eq "#{host}/economy" }
+      it { expect(subject.link(".d")).to eq "#{host}//economy" }
+      it { expect(subject.link(".e")).to eq "#{host}/economy" }
     end
     context "when is invalid input" do
-      it { subject.link(".absent").should be_nil }
-      it { subject.link("").should be_nil }
-      it { subject.link(nil).should be_nil }
+      it { expect(subject.link(".absent")).to be_nil }
+      it { expect(subject.link("")).to be_nil }
+      it { expect(subject.link(nil)).to be_nil }
     end
   end
 
   describe "#image" do
     context "when is valid input" do
-      it { subject.image("img.a-img").should == "#{host}/images/logo.png" }
-      it { subject.image("img.b-img").should == "#{host}/images/logo2.png" }
-      it { subject.image("img.d-img").should == "#{host}/images/logo3.png" }
-      it { subject.image("img.c-img").should == "#{host}/images/logo4.png" }
-      it { subject.image("img.e-img").should == "#{host}/images/logo5.png" }
+      it { expect(subject.image("img.a-img")).to eq "#{host}/images/logo.png" }
+      it { expect(subject.image("img.b-img")).to eq "#{host}/images/logo2.png" }
+      it { expect(subject.image("img.d-img")).to eq "#{host}/images/logo3.png" }
+      it { expect(subject.image("img.c-img")).to eq "#{host}/images/logo4.png" }
+      it { expect(subject.image("img.e-img")).to eq "#{host}/images/logo5.png" }
     end
     context "when is invalid input" do
-      it { subject.image("img.absent").should be_nil }
-      it { subject.image("").should be_nil }
-      it { subject.image(nil).should be_nil }
+      it { expect(subject.image("img.absent")).to be_nil }
+      it { expect(subject.image("")).to be_nil }
+      it { expect(subject.image(nil)).to be_nil }
     end
   end
 
