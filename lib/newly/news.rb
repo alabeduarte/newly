@@ -14,11 +14,5 @@ module Newly
       @feed_url = feed.url
       @featured_level = feed.featured_level
     end
-
-    private
-    def self.valid?(options)
-      options[:title] || options[:subtitle]
-    end
-
   end
 end

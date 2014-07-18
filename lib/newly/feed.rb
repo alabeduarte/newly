@@ -16,9 +16,5 @@ module Newly
       @limit = args[:limit]
     end
 
-    # validates :selector, :url_pattern, :presence => true
-    # validates :url, :host, :format => URI::regexp(%w(http https)), :presence => true
-    # validates :featured_level, :limit, :numericality => true, :presence => true
-
   end
 end
