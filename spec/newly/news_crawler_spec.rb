@@ -62,18 +62,36 @@ describe Newly::NewsCrawler do
           it { expect(a_news.subtitle).to eq 'MONZA, 8 Set (Reuters) - Tricampeao de Formula 1, Jackie Stewart aconselhou Lewis Hamilton neste sabado a...' }
           it { expect(a_news.feed_url).to eq "http://noticias.uol.com.br/noticias" }
         end
+      end
 
-        context "when reader is invalid" do
-          it "should not return news from invalid reader" do
-            invalid_feed = Newly::Feed.new(selector: "invalid")
-            invalid_reader = build_reader_with(invalid_feed, 'spec/html/page_spec.html')
+      context "when reader is invalid" do
+        it "should not return news from invalid reader" do
+          invalid_feed = Newly::Feed.new(selector: "invalid")
+          invalid_reader = build_reader_with(invalid_feed, 'spec/html/page_spec.html')
 
-            expect(invalid_reader).to have(0).fetch
+          expect(invalid_reader).to have(0).fetch
+        end
+
+        context "should not return value from invalid field" do
+          let(:invalid_feed) do
+            Newly::Feed.new(
+              url: "http://noticias.uol.com.br/noticias",
+              selector: "div.geral section article.news",
+              url_pattern: "x",
+              title: "x",
+              subtitle: "x")
           end
+          let(:invalid_reader) { build_reader_with(invalid_feed, 'spec/html/page_spec.html') }
+          let(:a_news) { invalid_reader.fetch.first }
+
+          it { expect(a_news.url).to be_nil }
+          it { expect(a_news.title).to be_nil }
+          it { expect(a_news.subtitle).to be_nil }
         end
       end
 
     end
+
   end
 
 private
