@@ -46,7 +46,7 @@ describe Newly::NewsCrawler do
       it { expect(a_news.url).to eq 'http://esporte.uol.com.br/ultimas-noticias/reuters/2012/09/08/jackie-stewart-aconselha-hamilton-a-continuar-na-mclaren.htm' }
       it { expect(a_news.title).to eq 'Jackie Stewart aconselha Hamilton a continuar na McLaren' }
       it { expect(a_news.subtitle).to eq 'MONZA, 8 Set (Reuters) - Tricampeao de Formula 1, Jackie Stewart aconselhou Lewis Hamilton neste sabado a...' }
-      it { expect(a_news.feed.url).to eq "http://noticias.uol.com.br/noticias" }
+      it { expect(a_news.feed_url).to eq "http://noticias.uol.com.br/noticias" }
 
     end
 

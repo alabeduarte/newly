@@ -21,14 +21,7 @@ module Newly
     def build_news_by(item)
       if (item)
         page_crawler = PageCrawler.new(@feed.host, item)
-        Newly::News.new(
-          url: page_crawler.link(@feed.url_pattern),
-          featured_level: @feed.featured_level,
-          title: page_crawler.titleize(@feed.title),
-          subtitle: page_crawler.titleize(@feed.subtitle),
-          image: page_crawler.image(@feed.image_source),
-          feed: @feed
-        )
+        Newly::News.new(page_crawler: page_crawler, feed: @feed)
       end
     end
 

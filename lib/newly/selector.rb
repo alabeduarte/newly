@@ -4,9 +4,8 @@ require 'open-uri'
 module Newly
   class Selector
 
-    def initialize(feed, selector)
+    def initialize(feed, selector=Nokogiri::HTML(open feed.url))
       @feed, @selector = feed, selector
-      # @selector = Nokogiri::HTML(open(@feed.url))
     end
 
     def all
