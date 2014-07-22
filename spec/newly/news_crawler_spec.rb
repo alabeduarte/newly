@@ -80,7 +80,7 @@ describe Newly::NewsCrawler do
         it "should not allow build readers without url" do
           invalid_feed = Newly::Feed.new(container: "div.geral section article.news")
 
-          expect { Newly::NewsCrawler.new(fake_selector, nil, invalid_feed) }.to raise_error "The url is required"
+          expect { Newly::NewsCrawler.new(selector: fake_selector, feed: invalid_feed) }.to raise_error "The url is required"
         end
       end
 
@@ -90,7 +90,7 @@ describe Newly::NewsCrawler do
 
 private
   def build_reader_with(url, feed)
-    Newly::NewsCrawler.new(fake_selector, url, feed)
+    Newly::NewsCrawler.new(selector: fake_selector, url: url, feed: feed)
   end
   def fake_selector
     parsed_html = Nokogiri::HTML.parse(File.read 'spec/html/page_spec.html')

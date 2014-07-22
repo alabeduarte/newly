@@ -1,13 +1,15 @@
+require 'set'
+
 module Newly
   class NewsCrawler
     attr_reader :title, :selector, :url
 
-    def initialize(selector, url, feed)
-      raise "The url is required" unless url
+    def initialize(args)
+      @feed = args[:feed]
+      @url = args[:url]
+      raise "The url is required" unless @url
 
-      @url = url
-      @selector = selector || Newly::Selector.new(Nokogiri::HTML(open @url))
-      @feed = feed
+      @selector = args[:selector] || Newly::Selector.new(Nokogiri::HTML(open @url))
     end
 
     def fetch
