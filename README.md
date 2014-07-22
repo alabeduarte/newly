@@ -9,15 +9,15 @@
 require 'newly'
 
 # Fecthing breaking news from some website
-feed = Newly::Feed.new(
+my_feed = Newly::Feed.new(
                         container: '#ultimas-regiao div, #ultimas-regiao ul li',
                         href: 'a',
                         title: '.titulo',
                         subtitle: '.subtitulo',
                         image_source: 'img')
 
-news = Newly::NewsCrawler.new('http://g1.globo.com/bahia/', feed).fetch
-news.each |n| do
+news = Newly::NewsCrawler.new(url: 'http://g1.globo.com/bahia/', feed: my_feed).fetch
+news.each do |n|
   puts n.url # news href url
   puts n.title # news title
   puts n.subtitle # news subtitle
