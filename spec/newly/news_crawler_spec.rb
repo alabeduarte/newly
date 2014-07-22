@@ -5,7 +5,7 @@ describe Newly::NewsCrawler do
   describe "fetching news" do
 
     it "should fetch news with limit" do
-      first_feed_with_limit = Newly::Feed.new(url: 'http://bla.x', container: ".chamada-principal", limit: 2)
+      first_feed_with_limit = Newly::Feed.new(container: ".chamada-principal", limit: 2)
       first_reader = build_reader_with 'http://bla.x', first_feed_with_limit
 
       expect(first_reader).to have(2).fetch
@@ -13,7 +13,6 @@ describe Newly::NewsCrawler do
 
     it "should fetch news without limit" do
       first_feed_without_limit = Newly::Feed.new(
-        url: 'http://bla.x',
         container: ".chamada-principal",
         url_pattern: "a",
         title: ".conteudo p",
@@ -28,7 +27,6 @@ describe Newly::NewsCrawler do
       context "first feed" do
         let(:first_feed) do
           Newly::Feed.new(
-            url: 'http://bla.x',
             container: ".chamada-principal",
             url_pattern: "a",
             title: ".conteudo p",

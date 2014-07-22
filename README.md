@@ -6,15 +6,17 @@
 
 ``` ruby
 # Fecthing breaking news from some website
+require 'newly'
+
+# Fecthing breaking news from some website
 feed = Newly::Feed.new(
-                        url: 'http://g1.globo.com/bahia/'
-                        selector: '#ultimas-regiao div, #ultimas-regiao ul li',
+                        container: '#ultimas-regiao div, #ultimas-regiao ul li',
                         href: 'a',
                         title: '.titulo',
                         subtitle: '.subtitulo',
                         image_source: 'img')
 
-news = Newly::NewsCrawler.new(feed).fetch
+news = Newly::NewsCrawler.new('http://g1.globo.com/bahia/', feed).fetch
 news.each |n| do
   puts n.url # news href url
   puts n.title # news title

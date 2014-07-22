@@ -1,0 +1,5 @@
+require 'newly/feed'
+require 'newly/news'
+require 'newly/news_crawler'
+require 'newly/page_crawler'
+require 'newly/selector'

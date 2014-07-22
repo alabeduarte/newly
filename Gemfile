@@ -1,10 +1,9 @@
 source "http://rubygems.org"
 
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.5.10'
 
 group :development do
-  gem "rspec", "~> 3.0.0"
-  gem "rspec-collection_matchers", "~> 1.0.0"
-  gem "jeweler", "~> 1.8.4"
-  gem "simplecov"
+  gem 'rspec', '~> 3.0'
+  gem 'rspec-collection_matchers', '~> 1.0'
+  gem 'jeweler', '~> 1.8'
 end
