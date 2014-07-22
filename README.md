@@ -1,6 +1,6 @@
 # newly
 
-## Fetching breaking news from websites
+## DSL that helps scrapping news given a feed definition with url and selectors
 
 ## SYNOPSIS:
 
