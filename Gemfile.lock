@@ -61,6 +61,6 @@ PLATFORMS
 
 DEPENDENCIES
   jeweler (~> 1.8)
-  nokogiri (~> 1.5.10)
+  nokogiri (~> 1.5)
   rspec (~> 3.0)
   rspec-collection_matchers (~> 1.0)

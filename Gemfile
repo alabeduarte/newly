@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem 'nokogiri', '~> 1.5.10'
+gem 'nokogiri', '~> 1.5'
 
 group :development do
   gem 'rspec', '~> 3.0'
