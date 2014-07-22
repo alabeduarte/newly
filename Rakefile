@@ -18,7 +18,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/alabeduarte/newly"
   gem.license = "MIT"
   gem.summary = %Q{Fetching breaking news from websites}
-  gem.description = %Q{Fetching breaking news from websites}
+  gem.description = %Q{DSL that helps scrapping news given a feed definition with url and selectors}
   gem.email = "alabeduarte@gmail.com"
   gem.authors = ["Alabê Duarte"]
   # dependencies defined in Gemfile
