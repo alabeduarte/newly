@@ -5,16 +5,16 @@
 
 Gem::Specification.new do |s|
   s.name = "newly"
-  s.version = "1.1.0"
+  s.version = "2.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alab\u{ea} Duarte"]
-  s.date = "2012-08-14"
-  s.description = "Fetching breaking news from websites"
+  s.date = "2014-07-22"
+  s.description = "DSL that helps scrapping news given a feed definition with url and selectors"
   s.email = "alabeduarte@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".DS_Store",
@@ -23,51 +23,47 @@ Gem::Specification.new do |s|
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
     "lib/newly.rb",
-    "lib/news.rb",
+    "lib/newly/feed.rb",
+    "lib/newly/news.rb",
+    "lib/newly/news_crawler.rb",
+    "lib/newly/page_crawler.rb",
+    "lib/newly/selector.rb",
     "newly.gemspec",
     "spec/.DS_Store",
-    "spec/html/ecbahia.html",
-    "spec/html/g1.html",
-    "spec/html/g1_bahia.html",
-    "spec/html/metro1_cidade.html",
-    "spec/newly_spec.rb",
+    "spec/html/page_spec.html",
+    "spec/newly/news_crawler_spec.rb",
+    "spec/newly/page_crawler_spec.rb",
     "spec/spec_helper.rb"
   ]
   s.homepage = "http://github.com/alabeduarte/newly"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.8.21"
   s.summary = "Fetching breaking news from websites"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<nokogiri>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
-      s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.1.5"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
-      s.add_development_dependency(%q<simplecov>, [">= 0"])
+      s.add_runtime_dependency(%q<nokogiri>, ["~> 1.5"])
+      s.add_development_dependency(%q<rspec>, ["~> 3.0"])
+      s.add_development_dependency(%q<rspec-collection_matchers>, ["~> 1.0"])
+      s.add_development_dependency(%q<jeweler>, ["~> 1.8"])
     else
-      s.add_dependency(%q<nokogiri>, [">= 0"])
-      s.add_dependency(%q<rspec>, ["~> 2.8.0"])
-      s.add_dependency(%q<rdoc>, ["~> 3.12"])
-      s.add_dependency(%q<bundler>, ["~> 1.1.5"])
-      s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
-      s.add_dependency(%q<simplecov>, [">= 0"])
+      s.add_dependency(%q<nokogiri>, ["~> 1.5"])
+      s.add_dependency(%q<rspec>, ["~> 3.0"])
+      s.add_dependency(%q<rspec-collection_matchers>, ["~> 1.0"])
+      s.add_dependency(%q<jeweler>, ["~> 1.8"])
     end
   else
-    s.add_dependency(%q<nokogiri>, [">= 0"])
-    s.add_dependency(%q<rspec>, ["~> 2.8.0"])
-    s.add_dependency(%q<rdoc>, ["~> 3.12"])
-    s.add_dependency(%q<bundler>, ["~> 1.1.5"])
-    s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
-    s.add_dependency(%q<simplecov>, [">= 0"])
+    s.add_dependency(%q<nokogiri>, ["~> 1.5"])
+    s.add_dependency(%q<rspec>, ["~> 3.0"])
+    s.add_dependency(%q<rspec-collection_matchers>, ["~> 1.0"])
+    s.add_dependency(%q<jeweler>, ["~> 1.8"])
   end
 end
 
