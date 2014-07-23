@@ -1,6 +1,6 @@
 # newly
 
-## DSL that helps scrapping news given a feed definition with url and selectors
+DSL that helps scrapping news given a feed definition with url and selectors
 
 ## SYNOPSIS:
 
