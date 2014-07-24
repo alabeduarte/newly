@@ -20,6 +20,10 @@ my_feed = Newly::Feed.new(
                         image_source: 'img')
 
 news = Newly::NewsCrawler.new(url: 'http://g1.globo.com/bahia/', feed: my_feed).fetch
+```
+Getting data:
+
+```ruby
 news.each do |n|
   puts n.url # news href url
   puts n.title # news title
@@ -27,6 +31,14 @@ news.each do |n|
   puts n.image # news image src
 end
 ```
+or
+
+```ruby
+news.each do |n|
+  puts n.to_hash # { url: '...', title: '...' }
+end
+```
+
 
 ## Contributing to newly
 
