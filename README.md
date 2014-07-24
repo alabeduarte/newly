@@ -1,5 +1,8 @@
 # newly
 
+[![Build Status](https://snap-ci.com/alabeduarte/newly/branch/master/build_image)](https://snap-ci.com/alabeduarte/newly/branch/master)
+
+
 DSL that helps scrapping news given a feed definition with url and selectors
 
 ## SYNOPSIS:
