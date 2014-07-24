@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "newly"
-  s.version = "2.0.0"
+  s.version = "2.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alab\u{ea} Duarte"]
-  s.date = "2014-07-22"
+  s.date = "2014-07-24"
   s.description = "DSL that helps scrapping news given a feed definition with url and selectors"
   s.email = "alabeduarte@gmail.com"
   s.extra_rdoc_files = [
@@ -17,9 +17,9 @@ Gem::Specification.new do |s|
     "README.md"
   ]
   s.files = [
-    ".DS_Store",
     ".document",
     ".rspec",
+    ".ruby-version",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
@@ -33,9 +33,9 @@ Gem::Specification.new do |s|
     "lib/newly/page_crawler.rb",
     "lib/newly/selector.rb",
     "newly.gemspec",
-    "spec/.DS_Store",
     "spec/html/page_spec.html",
     "spec/newly/news_crawler_spec.rb",
+    "spec/newly/news_spec.rb",
     "spec/newly/page_crawler_spec.rb",
     "spec/spec_helper.rb"
   ]
